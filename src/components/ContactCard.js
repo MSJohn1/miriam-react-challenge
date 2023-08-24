@@ -19,20 +19,12 @@ import { styled } from '@mui/system';
 
 const MyAvatar = styled(Avatar)({
     verticalAlign: 'center',
-
-    //maybe this needs to be absolute but it overlaps right now when I do
     position: "absolute",
-
     width: "5rem",
-
     height: "5rem",
-
     marginTop: "-2.5rem",
-
     marginLeft: "1.5rem",
-
     border: ".5rem solid",
-
     borderColor: "#252850",
 });
 
@@ -58,6 +50,9 @@ const ContactCard = ({key, contact, updateContactList}) => {
     //handling the toasts
     const [open, setOpen] = useState(false);
   
+    /**
+     * when x is clicked, changes the open state to false so that snackbar can close
+     */
     const handleToastClose = (event, reason) => {
       if (reason === 'clickaway') {
         return;
@@ -66,6 +61,9 @@ const ContactCard = ({key, contact, updateContactList}) => {
       setOpen(false);
     };
 
+    /**
+     * used to close the toast
+     */
     const action = (
         <React.Fragment>
           <IconButton
@@ -79,23 +77,23 @@ const ContactCard = ({key, contact, updateContactList}) => {
         </React.Fragment>
     );
 
+    /**
+     * calls passed in update function and passes in key which is the contact.id
+     */
     const handleUpdateContacts = () => {
-        updateContactList(contact.id);
+        updateContactList(key);
       };
 
     /**
-     * add contact to favorites, change heart to be pink, send state update to change hero(?)
+     * add contact to favorites, change heart to be pink, send state update to change hero
      * if heart is pink/contact is already in favorite
      */
     const handleHeartClick = () => {
         //if favorite is true when heart is clicked, set it to false and vice versa
         setFavorite(!isFavorite);
-        //PROBLEM: it is always false for some reason, swapping the values means it never updates
-        //i.e false to false. When I hard code it to set it true, the heart changes colors but the contact
-        //STILL returns false so no contacts are added to the favorited contacts group
-        
+
+        //update the Hero component's contact list with the passed in function
         handleUpdateContacts();
-        //setFavorite(true);
         
         //set toast state to open when contact is favorited but not when it is unfavorited
         isFavorite ? setOpen(false) : setOpen(true);
@@ -104,7 +102,7 @@ const ContactCard = ({key, contact, updateContactList}) => {
     return (
         <div>
             <Card sx={{ 
-                width: 345,
+                width: 300,
                 backgroundColor: '#252850',
                 color: '#b3b8cd',
                 border: "none",
@@ -116,7 +114,7 @@ const ContactCard = ({key, contact, updateContactList}) => {
                 <MyAvatar alt={_contact.name} src="https://th.bing.com/th/id/R.6dbe6f70ff4ab971dcf9d706e087880c?rik=lmxM2HHeOD11rA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-F-7S3bWCnD8%2fT8zelF2bWVI%2fAAAAAAAAASA%2fPN9sXsLIKGw%2fs1600%2fcaninecrews_kaffko.jpg&ehk=Jyju7DIwpsYScgBubnJ1uYR6Y7EvTRzbS7Cl8B75txA%3d&risl=&pid=ImgRaw&r=0" size="large"/>
                 <CardContent>
                     <Stack direction="column" spacing={2}>
-                        <Typography gutterBottom variant="h5" component="div" textAlign='right'>{_contact.name}</Typography>
+                        <Typography gutterBottom variant="h5" component="div" textAlign='right' marginRight='10'>{_contact.name}</Typography>
                         <Stack direction="row" spacing={1}>
                             <LocalPhoneRoundedIcon/>
                             <Typography variant="body2">{_contact.number}</Typography>
