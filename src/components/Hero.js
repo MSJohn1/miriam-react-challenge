@@ -6,6 +6,14 @@ import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/system';
 
+const ContactsButton = styled(Button)({
+
+});
+
+const MyGrid = styled(Grid)({
+
+});
+
 const Hero = () => {
    //dummy contacts
     const [contacts, setContacts] = useState([
@@ -23,15 +31,15 @@ const Hero = () => {
     const [showFavorites, setShowFavorites] =  useState(false);
 
     const toggleFavoriteDisplay = () => {
-        if(!showFavorites) {
-            setShowFavorites(true);
-            console.log("contacts \n" + contacts);
-            console.log("favorited contacts \n" + favoritedContacts);
-        } else if(showFavorites === true) {
-            setShowFavorites(false);
-        }
+        setShowFavorites(!showFavorites);
     }  
 
+    /**
+     * takes in a number and iterates through the list of contacts to find an existing contact
+     * and update the boolean isFavorite to be the opposite of what it was before.
+     * This is passed into each contact card component and called every time a heart is clicked.
+     * @param {int} contactID 
+     */
     const updateContactList = (contactID) => {
         setContacts(prevContacts => {
             return prevContacts.map(contact => {
