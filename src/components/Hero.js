@@ -23,7 +23,7 @@ const Hero = () => {
     const [showFavorites, setShowFavorites] =  useState(false);
 
     const toggleFavoriteDisplay = () => {
-        if(showFavorites === false) {
+        if(!showFavorites) {
             setShowFavorites(true);
             console.log("contacts \n" + contacts);
             console.log("favorited contacts \n" + favoritedContacts);
