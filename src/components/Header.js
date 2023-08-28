@@ -16,7 +16,7 @@ const Header = () => {
             <AppBar position="static">
                 <Toolbar>
                     <LocalPhoneRoundedIcon/>
-                    <Typography sx={{ font: 'Roboto', flexGrow: 1, marginLeft: '10px', fontSize: '22px'}}>
+                    <Typography sx={{ fontFamily: 'Roboto', flexGrow: 1, marginLeft: '10px', fontSize: '22px'}}>
                         My Contacts
                     </Typography>
                 </Toolbar>
